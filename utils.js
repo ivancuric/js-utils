@@ -24,9 +24,10 @@ export function fetchData(url) {
   return fetch(url)
     .then(handleErrors)
     .then(response => {
-      if (response.headers.get('Content-Type') === 'application/json')
+      const type = response.headers.get('Content-Type').split(';')[0];
+      if (type === 'application/json')
         return response.json();
-      if (response.headers.get('Content-Type') === 'text/html')
+      if (type === 'text/html' || type === 'text/plain')
         return response.text();
     });
 }
