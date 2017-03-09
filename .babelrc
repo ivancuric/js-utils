@@ -1,0 +1,28 @@
+{
+  "env": {
+    "development": {
+      "plugins": ["transform-object-rest-spread"],
+      "presets": [
+        ["env", {
+          "targets": {
+            "browsers": ["last 1 Chrome versions" ]
+          },
+          "modules": false,
+          "loose": true
+        }]
+      ]
+    },
+    "production": {
+      "plugins": ["transform-object-rest-spread"],
+      "presets": [
+        ["env", {
+          "useBuiltIns": true,
+          "debug": true,
+          "targets": {
+            "browsers": ["last 2 versions", "not ie <= 10"]
+          }
+        }]
+      ]
+    }
+  }
+}

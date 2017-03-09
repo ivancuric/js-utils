@@ -1,6 +1,5 @@
 /**
  * Async script load
- * @export
  * @param {URL} url
  */
 export function injectScript(url) {
@@ -17,7 +16,6 @@ export function injectScript(url) {
 
 /**
  * Data loader
- *
  * @param {URL} url
  * @param {Object} body
  * @returns {JSON | String}
@@ -35,7 +33,6 @@ export function fetchData(url) {
 
 /**
  * Fetch error handler
- *
  * @param {Promise} response
  * @returns {Promise | String}
  */
@@ -48,7 +45,6 @@ export function handleErrors(response) {
 
 /**
  * A Promise wrapper for requestAnimationFrame
- * @export
  * @returns {Promise}
  */
 export function requestAnimationFramePromise() {
@@ -57,10 +53,9 @@ export function requestAnimationFramePromise() {
 
 /**
  * Runs a function on each element matching the selector
- * @export
  * @param {String} selector
  * @param {Function} fn
- * @param {any} args
+ * @param {*} args
  */
 export function each(selector, fn, ...args) {
   const elArr = [...document.querySelectorAll(selector)];
@@ -72,7 +67,6 @@ export function each(selector, fn, ...args) {
 
 /**
  * Used for detecting when an element is rendered
- * @export
  * @param {Node} element - The element that is waiting to be rendered
  * @param {Function} callback - The function that fires after rendering
  */
@@ -86,11 +80,11 @@ export function onRender(element, callback) {
 
 /**
  * Generic 'run once'
- * @export
  * @param {Node} element - Element
  * @param {Event} event - Event to listen
  * @param {Function} callback - what to do
  */
+
 export function listenOnce(element, event, callback) {
   const onceCallback = () => {
     element.removeEventListener(event, onceCallback);
@@ -99,7 +93,10 @@ export function listenOnce(element, event, callback) {
   element.addEventListener(event, onceCallback);
 }
 
-/* Auto-bind */
+/**
+ * Autobind
+ * @param {*} self
+ */
 export function autoBind(self) {
   for (const key of Object.getOwnPropertyNames(self.constructor.prototype)) {
     const val = self[key];
