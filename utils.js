@@ -23,10 +23,10 @@ export function fetchData(url) {
   return fetch(url)
     .then(handleErrors)
     .then(response => {
-      const type = response.headers.get('Content-Type').split(';')[0];
-      if (type === 'application/json')
+      const type = response.headers.get('Content-Type');
+      if (type.includes('application/json'))
         return response.json();
-      if (type === 'text/html' || type === 'text/plain')
+      if (type.includes('text/html') || type.includes('text/plain'))
         return response.text();
     });
 }
