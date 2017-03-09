@@ -17,7 +17,6 @@ export function injectScript(url) {
 /**
  * Data loader
  * @param {URL} url
- * @param {Object} body
  * @returns {JSON | String}
  */
 export function fetchData(url) {
