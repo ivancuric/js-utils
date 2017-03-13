@@ -20,15 +20,11 @@ export function injectScript(url) {
  * @returns {JSON | String}
  */
 export function fetchData(url) {
-  return fetch(url)
-    .then(handleErrors)
-    .then(response => {
-      const type = response.headers.get('Content-Type');
-      if (type.includes('application/json'))
-        return response.json();
-      if (type.includes('text/html') || type.includes('text/plain'))
-        return response.text();
-    });
+  return fetch(url).then(handleErrors).then(response => {
+    const type = response.headers.get('Content-Type');
+    if (type.includes('json')) return response.json();
+    if (type.includes('text')) return response.text();
+  });
 }
 
 /**
@@ -37,11 +33,9 @@ export function fetchData(url) {
  * @returns {Promise | String}
  */
 export function handleErrors(response) {
-  if (!response.ok)
-    throw Error(response.statusText);
+  if (!response.ok) throw Error(response.statusText);
   return response;
 }
-
 
 /**
  * A Promise wrapper for requestAnimationFrame
@@ -63,8 +57,6 @@ export function each(selector, fn, ...args) {
   elArr.map(el => fn(el, ...args));
 }
 
-
-
 /**
  * Used for detecting when an element is rendered
  * @param {Node} element - The element that is waiting to be rendered
@@ -73,9 +65,7 @@ export function each(selector, fn, ...args) {
 
 export function onRender(element, callback) {
   element.getBoundingClientRect();
-  requestAnimationFrame(() =>
-    requestAnimationFrame(() =>
-      callback()));
+  requestAnimationFrame(() => requestAnimationFrame(() => callback()));
 }
 
 /**
@@ -107,4 +97,14 @@ export function autoBind(self) {
   }
 
   return self;
+}
+
+/** is the given object a Function? */
+export function isFunction(obj) {
+  return 'function' === typeof obj;
+}
+
+/** is the given object a String? */
+export function isString(obj) {
+  return 'string' === typeof obj;
 }
