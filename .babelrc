@@ -1,7 +1,11 @@
 {
   "env": {
     "development": {
-      "plugins": ["transform-object-rest-spread"],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-decorators-legacy",
+        "transform-async-to-generator"
+        ],
       "presets": [
         ["env", {
           "targets": {
@@ -13,13 +17,17 @@
       ]
     },
     "production": {
-      "plugins": ["transform-object-rest-spread"],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-decorators-legacy",
+        "transform-async-to-generator"
+        ],
       "presets": [
         ["env", {
           "useBuiltIns": true,
           "debug": true,
           "targets": {
-            "browsers": ["last 2 versions", "not ie <= 10"]
+            "browsers": ["last 2 versions", "not ie < 11"]
           }
         }]
       ]
