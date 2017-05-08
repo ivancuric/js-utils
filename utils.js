@@ -105,11 +105,10 @@ export function each(selector, fn, ...args) {
 /**
  * Used for detecting when an element is rendered
  * @param {Node} element - The element that is waiting to be rendered
- * @param {Function} callback - The function that fires after rendering
  */
 
 export async function render(element) {
-  element.getBoundingClientRect();
+  window.getComputedStyle(element);
   const f1 = await rafPromise();
   const f2 = await rafPromise();
   return f2 - f1;
